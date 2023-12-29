@@ -26,12 +26,19 @@ public class ResponseServlet extends HttpServlet {
         response.setHeader("Custom-Header", "hello");
 
         setCookie(response);
+        redirect(response);
 
-        response.sendRedirect("/api/basic");
 
         PrintWriter writer = response.getWriter();
         writer.println("하이요"); // Content-Type 에 ;charset=utf-8을 넣어 줬기 때문에 한글 가능
 
+    }
+
+    private static void redirect(HttpServletResponse response) throws IOException {
+        // Status Code 302
+
+        response.setStatus(HttpServletResponse.SC_FOUND);
+        response.sendRedirect("/basic/form.html");
     }
 
     private static void setCookie(HttpServletResponse response) {
