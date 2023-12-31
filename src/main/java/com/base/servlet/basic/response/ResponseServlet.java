@@ -1,8 +1,6 @@
 package com.base.servlet.basic.response;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -29,6 +27,7 @@ public class ResponseServlet extends HttpServlet {
         redirect(response);
 
 
+        // response body message
         PrintWriter writer = response.getWriter();
         writer.println("하이요"); // Content-Type 에 ;charset=utf-8을 넣어 줬기 때문에 한글 가능
 
