@@ -34,7 +34,7 @@ public class ResponseServlet extends HttpServlet {
     }
 
     private static void redirect(HttpServletResponse response) throws IOException {
-        // Status Code 302
+//        Status Code 302
 
 //        response.setStatus(HttpServletResponse.SC_FOUND);
         response.sendRedirect("/basic/form.html");

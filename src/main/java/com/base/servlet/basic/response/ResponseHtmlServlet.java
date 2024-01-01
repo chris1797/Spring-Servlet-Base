@@ -16,7 +16,7 @@ public class ResponseHtmlServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Content-Type: text/html;charset=utf-8
 
-        response.setContentType("text/html");
+        response.setContentType("text/html"); // html을 응답하기 위함
         response.setCharacterEncoding("utf-8");
 
         PrintWriter writer = response.getWriter();
