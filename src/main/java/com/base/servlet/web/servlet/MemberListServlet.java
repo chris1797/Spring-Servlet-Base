@@ -21,10 +21,12 @@ public class MemberListServlet extends HttpServlet {
 
         List<Member> members = memberRepository.findAll();
 
+
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
 
         // html 성공폼 응답 생략
+        System.out.println("members = " + members);
         response.getWriter().write("ok");
     }
 }
