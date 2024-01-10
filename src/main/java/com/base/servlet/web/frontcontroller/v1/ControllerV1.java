@@ -9,5 +9,5 @@ import java.rmi.server.ServerCloneException;
 
 public interface ControllerV1 {
 
-    void proceess(HttpServletRequest request, HttpServletResponse response) throws ServerCloneException, IOException, ServletException;
+    void process(HttpServletRequest request, HttpServletResponse response) throws ServerCloneException, IOException, ServletException;
 }
