@@ -8,11 +8,13 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 @WebServlet(name = "requestBodyServlet", urlPatterns = "/api/body")
 public class RequestBodyServlet extends HttpServlet {
 
@@ -26,16 +28,16 @@ public class RequestBodyServlet extends HttpServlet {
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
         // messageBody 내용을 byte 코드로 출력
         ServletInputStream inputStream = request.getInputStream();
-        System.out.println("inputStream ::: " + inputStream); // org.apache.catalina.connector.CoyoteInputStream@3626bd73
+        log.warn("inputStream ::: " + inputStream); // org.apache.catalina.connector.CoyoteInputStream@3626bd73
 
         // byte를 String으로 변환할때는 항상 인코딩할 형식 기재
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-        System.out.println("messageBody = " + messageBody);
+        log.warn("messageBody = " + messageBody);
 
 
         HelloData data = objectMapper.readValue(messageBody, HelloData.class);
-        System.out.println("helloData.userName = " + data.getUserName());
-        System.out.println("helloData.age = " + data.getAge());
+        log.warn("helloData.userName = " + data.getUserName());
+        log.warn("helloData.age = " + data.getAge());
 
         response.getWriter().write("ok");
      }
