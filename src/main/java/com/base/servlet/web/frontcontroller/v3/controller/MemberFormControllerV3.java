@@ -1,5 +1,6 @@
 package com.base.servlet.web.frontcontroller.v3.controller;
 
+import com.base.servlet.domain.member.MemberRepository;
 import com.base.servlet.web.frontcontroller.ModelView;
 import com.base.servlet.web.frontcontroller.v3.ControllerV3;
 
@@ -7,8 +8,9 @@ import java.util.Map;
 
 public class MemberFormControllerV3 implements ControllerV3 {
 
+
     @Override
-    public ModelView process(Map<String, Object> paramMap) {
+    public ModelView process(Map<String, String> paramMap) {
         return new ModelView("new-form");
     }
 }
