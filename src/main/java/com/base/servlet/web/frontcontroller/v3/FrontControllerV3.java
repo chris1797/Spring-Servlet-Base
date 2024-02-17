@@ -2,9 +2,7 @@ package com.base.servlet.web.frontcontroller.v3;
 
 import com.base.servlet.web.frontcontroller.ModelView;
 import com.base.servlet.web.frontcontroller.MyView;
-import com.base.servlet.web.frontcontroller.v3.ControllerV3;
 import com.base.servlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
-import com.base.servlet.web.frontcontroller.v3.controller.MemberListControllerV3;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,8 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.rmi.server.ServerCloneException;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,14 +39,15 @@ public class FrontControllerV3 extends HttpServlet {
             return;
         }
 
-        // paramMap을 넘겨줘야 함
+        // request에 담긴 데이터들을 paramMap으로 변환
         Map<String, String> paramMap = createParamMap(request);
 
         ModelView mv = controller.process(paramMap);
 
-        String viewName = mv.getViewName();
-        MyView view = viewResolver(viewName);
+        String viewName = mv.getViewName(); // view의 논리적 이름
+        MyView view = viewResolver(viewName); // viewName을 받아 실제 view로 변환
 
+        // model에 있는 데이터를 모두 request에 담아서 view에 전달
         view.render(mv.getModel(), request, response);
     }
 
