@@ -3,6 +3,8 @@ package com.base.servlet.web.frontcontroller.v3;
 import com.base.servlet.web.frontcontroller.ModelView;
 import com.base.servlet.web.frontcontroller.MyView;
 import com.base.servlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
+import com.base.servlet.web.frontcontroller.v3.controller.MemberListControllerV3;
+import com.base.servlet.web.frontcontroller.v3.controller.MemberSaveControllerV3;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,6 +28,8 @@ public class FrontControllerV3 extends HttpServlet {
          * request URI에 따른 컨트롤러 인스턴스를 반환
          */
         controllerMap.put("/front-controller/v3/members/new-form", new MemberFormControllerV3());
+        controllerMap.put("/front-controller/v3/members/save", new MemberSaveControllerV3());
+        controllerMap.put("/front-controller/v3/members", new MemberListControllerV3());
     }
 
     @Override
@@ -59,8 +63,11 @@ public class FrontControllerV3 extends HttpServlet {
 
     private static Map<String, String> createParamMap(HttpServletRequest request) {
         Map<String, String> paramMap = new HashMap<>();
+
+        // request에 담긴 데이터들을 추출하여 paramMap으로 변환
         request.getParameterNames().asIterator()
                 .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
+
         return paramMap;
     }
 }
