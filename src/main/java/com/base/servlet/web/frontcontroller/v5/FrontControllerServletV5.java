@@ -3,7 +3,9 @@ package com.base.servlet.web.frontcontroller.v5;
 import com.base.servlet.web.frontcontroller.ModelView;
 import com.base.servlet.web.frontcontroller.MyView;
 import com.base.servlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
+import com.base.servlet.web.frontcontroller.v4.controller.MemberFormControllerV4;
 import com.base.servlet.web.frontcontroller.v5.adapter.ControllerV3HandlerAdapter;
+import com.base.servlet.web.frontcontroller.v5.adapter.ControllerV4HandlerAdapter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,17 +28,21 @@ public class FrontControllerServletV5 extends HttpServlet {
     public FrontControllerServletV5() {
         initHandlerMappingMap();
         initHandlerAdapters();
-
     }
 
     private void initHandlerAdapters() {
         handlerAdapters.add(new ControllerV3HandlerAdapter());
+        handlerAdapters.add(new ControllerV4HandlerAdapter());
     }
 
     private void initHandlerMappingMap() {
         handlerMappingMap.put("/front-controller/v5/v3/members/new-form", new MemberFormControllerV3());
         handlerMappingMap.put("/front-controller/v5/v3/members/save", new MemberFormControllerV3());
         handlerMappingMap.put("/front-controller/v5/v3/members", new MemberFormControllerV3());
+
+        handlerMappingMap.put("/front-controller/v5/v4/members/new-form", new MemberFormControllerV4());
+        handlerMappingMap.put("/front-controller/v5/v4/members/save", new MemberFormControllerV4());
+        handlerMappingMap.put("/front-controller/v5/v4/members", new MemberFormControllerV4());
     }
 
     @Override
@@ -57,7 +63,7 @@ public class FrontControllerServletV5 extends HttpServlet {
         // 핸들러 어댑터로 핸들러 실행
         ModelView mv = adapter.handle(request, response, handler);
 
-        // viewName을 받아 실제 view로 변환
+        // 핸들러에서 return 받은 ModelView를 view로 변환
         String viewName = mv.getViewName();
         MyView view = viewResolver(viewName);
 
