@@ -9,6 +9,8 @@ import java.util.Map;
 @Getter
 @Setter
 public class ModelView {
+    // Springboot의 ModelAndView
+
     private String viewName;
     private Map<String, Object> model = new HashMap<>();
 

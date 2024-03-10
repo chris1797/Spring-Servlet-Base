@@ -19,9 +19,11 @@ import java.util.List;
 import java.util.Map;
 
 
+// FrontController -> DispatcherServlet
 @WebServlet(name = "frontControllerServletV5", urlPatterns = "/front-controller/v5/*")
 public class FrontControllerServletV5 extends HttpServlet {
 
+    // Springboot의 HandlerMapping
     private final Map<String, Object> handlerMappingMap = new HashMap<>();
     private final List<MyHandlerAdapter> handlerAdapters = new ArrayList<>();
 
@@ -72,6 +74,7 @@ public class FrontControllerServletV5 extends HttpServlet {
     }
 
     private MyView viewResolver(String viewName) {
+        // Springboot의 ViewResolver
         return new MyView("/WEB-INF/views/" + viewName + ".jsp");
     }
 

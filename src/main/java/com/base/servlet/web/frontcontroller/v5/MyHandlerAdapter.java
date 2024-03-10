@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public interface MyHandlerAdapter {
+    // Springboot의 HandlerAdapter
 
     boolean supports(Object handler);
 

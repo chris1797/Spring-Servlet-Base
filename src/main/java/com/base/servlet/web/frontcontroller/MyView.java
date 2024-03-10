@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
+// Springboot의 ModelView와 비슷한 역할
 public class MyView {
+
     private final String viewPath;
 
     public MyView(String viewPath) {
