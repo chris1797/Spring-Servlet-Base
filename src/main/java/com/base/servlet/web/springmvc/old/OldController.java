@@ -15,8 +15,8 @@ import org.springframework.web.servlet.mvc.Controller;
 @Component("/springmvc/old-controller")
 public class OldController implements Controller {
     @Override
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("OldController.handleRequest");
         return null;
     }
 }

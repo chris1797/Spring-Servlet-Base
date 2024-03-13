@@ -18,7 +18,7 @@ public class ControllerV4HandlerAdapter implements MyHandlerAdapter {
     }
 
     @Override
-    public ModelView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
+    public ModelView handle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         // handler가 ControllerV4 타입이므로 다운캐스팅
         ControllerV4 controller = (ControllerV4) handler;
 
