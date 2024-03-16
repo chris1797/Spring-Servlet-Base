@@ -17,6 +17,6 @@ public class OldController implements Controller {
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("OldController.handleRequest");
-        return null;
+        return new ModelAndView("new-form");
     }
 }
