@@ -5,7 +5,8 @@ import com.base.servlet.domain.member.MemberRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -17,31 +18,29 @@ public class SpringMemberControllerV2 {
     private final MemberRepository memberRepository = MemberRepository.getInstance();
 
 
-    public ModelAndView members() {
+    @GetMapping
+    public String members(Model model) {
         List<Member> members = memberRepository.findAll();
+        model.addAttribute("members", members);
 
-        ModelAndView mv = new ModelAndView("members");
-        mv.addObject("members", members);
-
-        return mv;
+        // String을 반환하면 해당 String을 viewName으로 알고 화면을 찾아서 처리
+        return "members";
     }
 
-    @RequestMapping("/new-form")
-    public ModelAndView newForm() {
-        return new ModelAndView("new-form");
+    @GetMapping("/new-form")
+    public String newForm() {
+        return "new-form";
     }
 
-    @RequestMapping("/save")
-    public ModelAndView save(HttpServletRequest request, HttpServletResponse response) {
-        String username = request.getParameter("username");
-        int age = Integer.parseInt(request.getParameter("age"));
-
+    @PostMapping("/save")
+    public String save(@RequestParam("username") String username,
+                             @RequestParam("age") int age,
+                             Model model) {
         Member member = new Member(username, age);
         memberRepository.save(member);
 
-        ModelAndView mv = new ModelAndView("save-result");
-        mv.addObject("member", member);
+        model.addAttribute("member", member);
 
-        return mv;
+        return "save-result";
     }
 }
