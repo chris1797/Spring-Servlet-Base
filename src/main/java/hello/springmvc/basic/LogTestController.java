@@ -1,6 +1,5 @@
 package hello.springmvc.basic;
 
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +14,8 @@ public class LogTestController {
     public String logTest() {
         String name = "Spring";
 
+        // println을 사용하면 로그를 남길 때마다 문자열 더하기 연산이 발생한다.
+        // 또한 레발에 상관없이 모두 출력된다.
         System.out.println("name = " + name);
 
         log.trace("trace log={}", name);
