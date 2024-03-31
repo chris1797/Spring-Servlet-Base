@@ -19,9 +19,9 @@ public class LogTestController {
         System.out.println("name = " + name);
 
         log.trace("trace log={}", name);
-        log.debug("debug log={}", name);
-        log.info(" info log={}", name); // 운영 레벨에서는 보통 info 레벨까지만 출력
-        log.warn(" warn log={}", name);
+        log.debug("debug log={}", name); // 개발 레벨에서는 debug 레벨까지 출력
+        log.info("info log={}", name); // 운영 레벨에서는 보통 info 레벨까지만 출력
+        log.warn("warn log={}", name);
         log.error("error log={}", name);
 
         return "ok";
