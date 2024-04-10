@@ -65,6 +65,7 @@ public class MappingController {
     // Accept라는 헤더가 있을 때만 매핑되도록 할 수 있다.
     // Accept header는 클라이언트가 서버에게 받고 싶은 타입을 알려주는 것이다.
     // Accept header에 application/json이 있을 때만 매핑된다.
+    // MediaType.APPLICATION_JSON_VALUE는 application/json을 나타낸다.
     @PostMapping(value = "/mapping-produce", produces = MediaType.APPLICATION_JSON_VALUE)
     public String mappingProduces() {
         log.info("mappingProduces");
