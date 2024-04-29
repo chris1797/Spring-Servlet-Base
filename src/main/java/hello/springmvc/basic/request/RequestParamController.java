@@ -23,8 +23,47 @@ public class RequestParamController {
     }
 
     @RequestMapping("/request-param-v2")
-    public void requestParamV2(@RequestParam String username,
-                               @RequestParam int age, HttpServletResponse response) throws IOException {
+    public void requestParamV2(@RequestParam("username") String username, // @RequestParam("username")을 생략하면 파라미터 이름으로 매핑
+                               @RequestParam("age") int age,
+                               HttpServletResponse response) throws IOException {
+        log.info("username={}, age={}", username, age);
+
+        response.getWriter().write("ok");
+    }
+
+    @RequestMapping("/request-param-v3")
+    public void requestParamV3(@RequestParam String memberName,
+                               @RequestParam int memberAge,
+                               HttpServletResponse response) throws IOException {
+        log.info("username={}, age={}", memberName, memberAge);
+
+        response.getWriter().write("ok");
+    }
+
+    @RequestMapping("/request-param-v4")// @RequestParam 생략 가능
+    public void requestParamV4(String username, int age, HttpServletResponse response) throws IOException {
+        log.info("username={}, age={}", username, age);
+
+        response.getWriter().write("ok");
+    }
+
+    @RequestMapping("/request-param-required")
+    public void requestParamRequired(@RequestParam(required = true) String username,
+                                     @RequestParam(required = false) Integer age,
+                                     HttpServletResponse response) throws IOException {
+
+        // required = true로 설정하면 해당 파라미터가 반드시 있어야 한다.
+        log.info("username={}, age={}", username, age);
+
+        response.getWriter().write("ok");
+    }
+
+    @RequestMapping("/request-param-default")
+    public void requestParamDefault(@RequestParam(defaultValue = "guest") String username,
+                                    @RequestParam(defaultValue = "-1") int age,
+                                    HttpServletResponse response) throws IOException {
+
+        // defaultValue를 설정하면 해당 파라미터가 없을 때 기본 값을 설정할 수 있다.
         log.info("username={}, age={}", username, age);
 
         response.getWriter().write("ok");
