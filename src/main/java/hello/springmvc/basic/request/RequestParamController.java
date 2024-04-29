@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 
@@ -18,6 +19,14 @@ public class RequestParamController {
         int age = Integer.parseInt(request.getParameter("age"));
 
         log.info("username={}, age={}", username, age);
+        response.getWriter().write("ok");
+    }
+
+    @RequestMapping("/request-param-v2")
+    public void requestParamV2(@RequestParam String username,
+                               @RequestParam int age, HttpServletResponse response) throws IOException {
+        log.info("username={}, age={}", username, age);
+
         response.getWriter().write("ok");
     }
 
