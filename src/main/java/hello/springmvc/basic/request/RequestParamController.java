@@ -6,8 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -67,6 +69,15 @@ public class RequestParamController {
         log.info("username={}, age={}", username, age);
 
         response.getWriter().write("ok");
+    }
+
+    @ResponseBody
+    @RequestMapping("/request-param-map")
+    public String requestParamMap(@RequestParam Map<String, Object> paramMap) {
+        // @RequestParam Map<String, Object> paramMap를 사용하면 모든 요청 파라미터를 Map으로 받을 수 있다.
+        log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
+
+        return "ok";
     }
 
 }
