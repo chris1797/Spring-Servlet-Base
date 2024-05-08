@@ -1,10 +1,8 @@
 package com.base.servlet.basic;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class HelloData {
 
     private String userName;
