@@ -106,4 +106,14 @@ public class RequestParamController {
 
         return "ok";
     }
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v2")
+    public String modelAttributeV2(HelloData helloData) {
+        // @ModelAttribute 생략 가능, 스프링은 @ModelAttribute 가 생략되어도 해당 객체를 생성해서 모델에 추가해준다.
+        // @RequestParam은 주로 단순한 파라미터를 받을 때 사용하고, @ModelAttribute는 복잡한 객체를 바인딩 받을 때 주로 사용한다.
+        log.info("username={}, age={}", helloData.getUserName(), helloData.getAge());
+
+        return "ok";
+    }
 }
