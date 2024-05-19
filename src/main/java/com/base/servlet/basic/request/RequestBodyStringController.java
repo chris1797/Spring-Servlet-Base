@@ -4,6 +4,7 @@ import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +49,19 @@ public class RequestBodyStringController {
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
         log.info("messageBody = {}", messageBody);
         responseWriter.write("ok");
+    }
+
+    // HttpEntity : HTTP header, body 정보를 편리하게 조회
+    @PostMapping("/request-body-string-v3")
+    public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) throws IOException {
+        // HttpEntity는 HTTP 요청, 응답의 헤더 정보 및 바디 정보를 편리하게 조회할 수 있는 기능을 제공
+        // 요청 파라미터를 조회하는 기능과는 관계가 없다. (@RequestParam, @ModelAttribute)
+        String messageBody = httpEntity.getBody();
+        log.info("messageBody = {}", messageBody);
+
+        // HttpEntity를 상속받는 것들이 RequestEntity, ResponseEntity
+
+        // HttpEntity는 응답에도 사용할 수 있음.
+        return new HttpEntity<>("ok");
     }
 }
