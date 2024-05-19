@@ -8,6 +8,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,13 +21,13 @@ import java.nio.charset.StandardCharsets;
 public class RequestBodyStringController {
 
     /*
-        * HTTP 요청 메시지 바디의 내용을 직접 조회하는 방법
-        * HTTP 메시지 바디의 데이터를 읽기 위해서는 InputStream 또는 Reader를 사용해야 한다.
-        * 이것은 HTTP 요청 메시지를 직접 읽는 기능이므로 요청 파라미터를 조회하는 기능과 별도로 제공된다.
-        *
-        * HTTP 요청 메시지의 내용을 직접 조회하는 기능은 요청 파라미터를 조회하는 기능과 매우 유사하다.
-        * 따라서 스프링 MVC는 이 둘을 편리하게 사용할 수 있도록 여러 메서드를 제공한다.
-        * ex) @RequestParam, @ModelAttribute
+     * HTTP 요청 메시지 바디의 내용을 직접 조회하는 방법
+     * HTTP 메시지 바디의 데이터를 읽기 위해서는 InputStream 또는 Reader를 사용해야 한다.
+     * 이것은 HTTP 요청 메시지를 직접 읽는 기능이므로 요청 파라미터를 조회하는 기능과 별도로 제공된다.
+     *
+     * HTTP 요청 메시지의 내용을 직접 조회하는 기능은 요청 파라미터를 조회하는 기능과 매우 유사하다.
+     * 따라서 스프링 MVC는 이 둘을 편리하게 사용할 수 있도록 여러 메서드를 제공한다.
+     * ex) @RequestParam, @ModelAttribute
      */
     @PostMapping("/request-body-string-v1")
     public void requestBodyStringV1(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -40,8 +42,8 @@ public class RequestBodyStringController {
     }
 
     /*
-        * InputStream(Reader) : HTTP 요청 메시지 바디의 내용을 직접 조회
-        * 요청 파라미터와 마찬가지로 응답 파라미터에도 Writer를 사용할 수 있다.
+     * InputStream(Reader) : HTTP 요청 메시지 바디의 내용을 직접 조회
+     * 요청 파라미터와 마찬가지로 응답 파라미터에도 Writer를 사용할 수 있다.
      */
     @PostMapping("/request-body-string-v2")
     public void requestBodyStringV2(InputStream inputStream, Writer responseWriter) throws IOException {
@@ -63,5 +65,18 @@ public class RequestBodyStringController {
 
         // HttpEntity는 응답에도 사용할 수 있음.
         return new HttpEntity<>("ok");
+    }
+
+    @ResponseBody
+    @PostMapping("/request-body-string-v4")
+    public String requestBodyStringV4(@RequestBody String messageBody) throws IOException {
+        /**
+         * @RequestBody는 요청 메시지 바디 정보를 편리하게 조회할 수 있음 (@RequestParam과 유사)
+         * Header 정보가 필요하다면 HttpEntity나 @RequestHeader를 사용하면 된다.
+         * 이렇게 body를 직접 조회하는 기능은 요청 파라미터를 조회하는 기능과 관계가 없다. (@RequestParam, @ModelAttribute)
+         * HttpMessageConverter:  HTTP 메시지 컨버터를 사용해서 HTTP 메시지 바디의 내용을 우리가 원하는 문자나 객체 등으로 변환시켜 주는 기능을 제공한다.
+         */
+        log.info("messageBody = {}", messageBody);
+        return "ok";
     }
 }
