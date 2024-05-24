@@ -9,10 +9,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@Controller
+//@Controller
+@RestController // @Controller + @ResponseBody
 public class ResponseBodyController {
+
+    /**
+     * @RestController = @Controller + @ResponseBody
+     * @RestController 를 사용하면, 해당 컨트롤러에 모두 @ResponseBody가 적용된다.
+     */
 
     @GetMapping("/response-body-string-v1")
     public void responseBodyStringV1(HttpServletResponse response) throws Exception {
