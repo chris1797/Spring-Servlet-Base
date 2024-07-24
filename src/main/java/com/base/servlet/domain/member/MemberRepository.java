@@ -7,7 +7,9 @@ import java.util.Map;
 
 /**
  * product level 에서 ConcurrentHashMap, AtomicLong 고려
+ * <p>
  * 싱글톤으로 구현한 클래스
+ * <p>
  * Spring에서는 싱글톤을 보장해줌
  */
 public class MemberRepository {
