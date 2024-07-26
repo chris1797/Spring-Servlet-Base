@@ -1,5 +1,6 @@
 package com.base.servlet.domain.member;
 
+import core.member.Grade;
 import lombok.Data;
 
 @Data
