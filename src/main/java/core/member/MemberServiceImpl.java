@@ -3,7 +3,11 @@ package core.member;
 public class MemberServiceImpl implements MemberService {
 
     // 구현 객체를 직접 선택
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
 
     @Override

@@ -1,4 +1,4 @@
-package hello.springmvc.basic;
+package mvc.springmvc.basic;
 
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;

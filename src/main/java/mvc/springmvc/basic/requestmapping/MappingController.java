@@ -1,10 +1,8 @@
-package hello.springmvc.basic.requestmapping;
+package mvc.springmvc.basic.requestmapping;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
 
 @Slf4j
 @RestController

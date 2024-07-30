@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Array;
 
 
 @WebServlet(name = "basicServlet", urlPatterns = "/api")
@@ -24,7 +23,7 @@ public class BasicServlet extends HttpServlet {
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
-        response.getWriter().write("hello " + userName);
+        response.getWriter().write("mvc " + userName);
 
         
     }

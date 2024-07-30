@@ -21,7 +21,7 @@ public class ResponseServlet extends HttpServlet {
         response.setHeader("Content-Type", "text/plain;charset=utf-8");
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
-        response.setHeader("Custom-Header", "hello");
+        response.setHeader("Custom-Header", "mvc");
 
         setCookie(response);
         redirect(response);
