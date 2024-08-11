@@ -1,13 +1,14 @@
 package core.order;
 
 import core.discount.DiscountPolicy;
-import core.discount.FixDiscountPolicy;
 import core.member.Member;
 import core.member.MemberRepository;
-import core.member.MemoryMemberRepository;
+import lombok.Getter;
 
 public class OrderServiceImpl implements OrderService {
 
+    // Test 용도 Getter
+    @Getter
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
@@ -26,4 +27,5 @@ public class OrderServiceImpl implements OrderService {
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
+
 }
