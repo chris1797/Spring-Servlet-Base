@@ -35,4 +35,25 @@ public class ConfigurationSingletonTest {
         assertThat(memberRepository2).isSameAs(memberRepository);
 
     }
+
+    @Test
+    void configurationDeep2() {
+        // AnnotationConfigApplicationContext의 생성자 파라미터로 AppConfig.class를 넘기면 AppConfig에 있는 @Bean들을 스프링 빈으로 등록한다.
+        // 스프링 빈으로 등록된 AppConfig를 getBean으로 가져올 수 있다.
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        // AppConfig는 Configuration이므로 스프링 컨테이너에 등록되어있는가?
+        System.out.println("bean = " + bean);
+
+        /*
+        CGLIB는 스프링이 내부적으로 사용하는 바이트코드 조작 라이브러리이다.
+        이 라이브러리를 사용하면 클래스를 상속받은 임의의 다른 클래스를 만들고, 그 다른 클래스를 스프링 빈으로 등록할 수 있다.
+        AppConfig 클래스를 상속받은 임의의 다른 클래스를 만들고, 그 다른 클래스를 스프링 빈으로 등록한 것이다.
+        그리고 이 임의의 다른 클래스가 싱글톤이 보장되도록 해준다.
+         */
+
+
+    }
 }
