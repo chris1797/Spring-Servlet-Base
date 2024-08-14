@@ -1,7 +1,6 @@
 package core;
 
 import core.discount.DiscountPolicy;
-import core.discount.FixDiscountPolicy;
 import core.discount.RateDiscountPolicy;
 import core.member.MemberRepository;
 import core.member.MemberService;
