@@ -14,6 +14,13 @@ import org.springframework.context.annotation.FilterType;
  */
 @Configuration
 @ComponentScan(
+        /*
+        탐색할 패키지의 시작 위치를 지정한다. 해당 패키지를 포함해서 하위 패키지를 모두 탐색한다.
+        만약 지정하지 않으면 @ComponentScan 이 붙은 설정 정보 클래스의 패키지가 시작 위치가 된다.
+        관례로는 설정 정보 클래스의 위치를 프로젝트 최상단에 둔다. 그럼 basePackages를 지정하지 않아도 된다.
+        @SpringBootApplication 에 사실 @ComponentScan 이 포함되어 있다. 그래서 특별히 프로젝트 시작 위치를 지정하지 않아도 잘 동작한다.
+         */
+        basePackages = "core.member",
         excludeFilters = @ComponentScan.Filter(
                 type = FilterType.ANNOTATION,
                 classes = Configuration.class)
