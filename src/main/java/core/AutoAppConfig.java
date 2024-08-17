@@ -1,5 +1,8 @@
 package core;
 
+import core.member.MemberRepository;
+import core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -20,12 +23,21 @@ import org.springframework.context.annotation.FilterType;
         관례로는 설정 정보 클래스의 위치를 프로젝트 최상단에 둔다. 그럼 basePackages를 지정하지 않아도 된다.
         @SpringBootApplication 에 사실 @ComponentScan 이 포함되어 있다. 그래서 특별히 프로젝트 시작 위치를 지정하지 않아도 잘 동작한다.
          */
-        basePackages = "core.member",
+//        basePackages = "core.member",
         excludeFilters = @ComponentScan.Filter(
                 type = FilterType.ANNOTATION,
                 classes = Configuration.class)
 )
 public class AutoAppConfig {
 
+    /*
+    수동으로 등록한 빈이 자동으로 등록한 빈을 오버라이딩 한다. (기존에 memoryMemberRepository 빈이 존재하므로 오버라이딩)
+    @SpringBootApplication 에서는 수동 빈 등록과 자동 빈 등록이 충돌나면 오류가 발생하도록 설정되어 있다.
+    해당 설정값은 spring.main.allow-bean-definition-overriding=false 이다.
+     */
+//    @Bean(name = "memoryMemberRepository")
+//    public MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+//    }
 
 }
