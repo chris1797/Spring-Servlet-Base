@@ -15,6 +15,7 @@ public class OrderServiceImpl implements OrderService {
     - 필요한 빈들과의 의존관계 주입이 불가능하기 때문에 테스트 코드 작성이 어렵다.
      */
 
+    @Getter
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
