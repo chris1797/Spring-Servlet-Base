@@ -15,6 +15,7 @@ public class OrderServiceImpl implements OrderService {
     - 필요한 빈들과의 의존관계 주입이 불가능하기 때문에 테스트 코드 작성이 어렵다.
      */
 
+
     @Getter
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
@@ -27,6 +28,7 @@ public class OrderServiceImpl implements OrderService {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
+
 
     /**
      * <p>수정자 주입의 의존관계 주입 시점은 해당 빈의 생성 시점 이후, 스프링 컨테이너가 관리중인 빈이 모두 생성되고, 의존관계 주입이 완료된 이후에 호출된다.</p>
