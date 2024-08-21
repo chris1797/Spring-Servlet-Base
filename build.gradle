@@ -27,9 +27,16 @@ dependencies {
 	implementation 'org.springframwork.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl'
+
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+	// Lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	// Lombok end
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

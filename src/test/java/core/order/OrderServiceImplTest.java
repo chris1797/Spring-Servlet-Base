@@ -7,7 +7,6 @@ import core.member.MemoryMemberRepository;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class OrderServiceImplTest {
 
@@ -20,7 +19,6 @@ class OrderServiceImplTest {
         Order order = orderService.createOrder(1L, "itemA", 10000);
 
         assertThat(order.getDiscountPrice()).isEqualTo(1000);
-
     }
 
 }
