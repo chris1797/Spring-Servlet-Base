@@ -1,5 +1,6 @@
 package core.order;
 
+import core.annotation.MainDiscountPolicy;
 import core.discount.DiscountPolicy;
 import core.member.Member;
 import core.member.MemberRepository;
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
     /*
     필드 주입이 권장되지 않는 이유
@@ -24,10 +25,10 @@ public class OrderServiceImpl implements OrderService {
     /**
      * 생성자 주입의 의존관계 주입 시점은 해당 빈의 생성 시점(생성자 호출 시점)에 스프링이 알아서 주입해준다.
      */
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
 
     /**
