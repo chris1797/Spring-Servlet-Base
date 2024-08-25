@@ -2,8 +2,10 @@ package core.discount;
 
 import core.member.Member;
 import core.member.Grade;
+import org.springframework.stereotype.Component;
 
 
+@Component
 public class FixDiscountPolicy implements DiscountPolicy {
 
     private final int discountFixAmount = 1000; // 1000원 할인
