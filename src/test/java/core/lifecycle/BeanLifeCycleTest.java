@@ -22,7 +22,13 @@ public class BeanLifeCycleTest {
 
     @Configuration
     static class TestConfig {
-        @Bean
+
+        /*
+        라이브러리는 대부분이 close, shutdown, destroy 메서드를 제공한다.
+        destroyMethod는 기본값이 (inferred)로 되어 있는데 close, shutdown, destroy 메서드를 자동으로 호출해주기 때문에 별도로 설정하지 않아도 된다.
+        disconnect 메서드를 공백으로 설정하면 close, shutdown, destroy 메서드를 자동으로 호출해주지 않는다.
+         */
+        @Bean(initMethod = "init", destroyMethod = "close")
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://hello-spring.dev");
