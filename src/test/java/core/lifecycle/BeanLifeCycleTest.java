@@ -13,12 +13,11 @@ public class BeanLifeCycleTest {
 
         ConfigurableApplicationContext ac = new AnnotationConfigApplicationContext(TestConfig.class);
 
+        // 스프링 컨테이너 생성
         NetworkClient client = ac.getBean(NetworkClient.class);
-        client.setUrl("http://hello-spring.dev");
 
-        client.connect();
-        client.call("hello");
-        client.disconnect();
+        // 스프링 컨테이너 종료
+        ac.close();
     }
 
     @Configuration
