@@ -6,7 +6,6 @@ import jakarta.inject.Provider;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
@@ -14,7 +13,7 @@ import org.springframework.context.annotation.Scope;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SingletonWithPrototypeTest1 {
+public class SingletonWithPrototypeTest {
 
     @Test
     void prototypeFind() {
@@ -47,6 +46,7 @@ public class SingletonWithPrototypeTest1 {
     }
 
     @Scope("singleton")
+    @RequiredArgsConstructor
     static class ClientBean {
         /*
         :: Provider (ObjectFactory, ObjectProvider)
@@ -58,8 +58,7 @@ public class SingletonWithPrototypeTest1 {
 
         // javax.inject.Provider 대신 jakarta.inject.Provider 사용 (name: JSR-330 Provider)
         // Provider를 사용하면 get() 메서드 하나로 심플하게 원하는 빈을 컨테이너에서 대신 찾아준다.
-        @Autowired
-        private Provider<PrototypeBean> prototypeBeanProvider;
+        private final Provider<PrototypeBean> prototypeBeanProvider;
 
         public int logic() {
             PrototypeBean prototypeBean = prototypeBeanProvider.get();
