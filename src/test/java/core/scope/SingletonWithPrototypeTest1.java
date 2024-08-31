@@ -2,10 +2,15 @@ package core.scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
+
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -43,13 +48,21 @@ public class SingletonWithPrototypeTest1 {
 
     @Scope("singleton")
     static class ClientBean {
-        private final PrototypeBean prototypeBean; // 생성 시점에 주입
+        /*
+        :: Provider (ObjectFactory, ObjectProvider)
+        - 지정한 빈을 컨테이너에서 대신 찾아주는 DL 서비스를 제공
+        - ObjectFactory: 기능이 단순, 별도의 라이브러리 필요 없음
+        - ObjectProvider: ObjectFactory 상속, 옵션, 스트림 처리 등 편의 기능이 많고, 스프링 4.3부터 지원. ObjectFactory를 상속받아서 확장한 것
+                         편하고 좋지만 스프링에 의존적이라는 문제
+         */
 
-        public ClientBean(PrototypeBean prototypeBean) {
-            this.prototypeBean = prototypeBean;
-        }
+        // javax.inject.Provider 대신 jakarta.inject.Provider 사용 (name: JSR-330 Provider)
+        // Provider를 사용하면 get() 메서드 하나로 심플하게 원하는 빈을 컨테이너에서 대신 찾아준다.
+        @Autowired
+        private Provider<PrototypeBean> prototypeBeanProvider;
 
         public int logic() {
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }

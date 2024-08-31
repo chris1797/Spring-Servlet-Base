@@ -23,6 +23,9 @@ repositories {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api
+	implementation group: 'jakarta.inject', name: 'jakarta.inject-api', version: '2.0.1'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframwork.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
