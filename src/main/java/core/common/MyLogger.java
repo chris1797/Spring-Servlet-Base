@@ -22,7 +22,7 @@ public class MyLogger {
 
     @PostConstruct
     public void init() {
-        String uuid = java.util.UUID.randomUUID().toString();
+        this.uuid = java.util.UUID.randomUUID().toString();
         System.out.println("[" + uuid + "][" + requestURL + "] request scope bean create:" + this);
     }
 
