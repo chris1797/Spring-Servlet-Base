@@ -17,16 +17,13 @@ public class LogDemoController {
      * <p>MyLogger 는 request scope 이므로 HTTP 요청이 들어올 때마다 새로운 MyLogger 가 생성되어야 하는데,</p>
      * <p>ObjectProvider 없이 MyLogger가 생성되는 시점에 주입받으면, MyLogger 는 싱글톤 빈이므로 주입받은 시점의 MyLogger 를 계속 사용하게 된다.</p>
      * <p>ObjectProvider 를 사용하면 개발자가 원하는, getObject() 를 호출하는 시점에 컨테이너에서 MyLogger 를 찾아서 반환한다.</p>
-     *
-     *
      */
-    private final ObjectProvider<MyLogger> myLoggerProvider;
     private final LogDemoService logDemoService;
+    private final MyLogger myLogger;
 
     @RequestMapping("log-demo")
     public String logDemo(HttpServletRequest request) throws InterruptedException {
         String requestURL = request.getRequestURL().toString();
-        MyLogger myLogger = myLoggerProvider.getObject();
         myLogger.setRequestURL(requestURL);
 
         myLogger.log("controller test");
